@@ -3,9 +3,9 @@ let buttonsContainer = document.getElementById("buttonsContainer");
 
 button.addEventListener("click", playGame);
 
-const playGame = () => {
-
-};
+function playGame() {
+    generateButtons()
+}
 
 function generateButtons() {
     let numberOfButtons = document.getElementById("numberOfButtons").value;
