@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Welcome</h1>
+    <h2>to Guess the Button!</h2>
+    <h3>The ideea is simple of the game is simple.</h3>
+    <h5>
+        Enter the number of buttons you want to guess from in the box bellow. Then, try to guess the correct button.<br />
+        If you do, you win! But be carrefull, you have only one life!
+    </h5>
+
+    <div class="container my-4">
+        <form>
+            <div class="input-group d-flex flex-column align-items-center my-2">
+                <label for="numberOfButtons" class="form-label">Enter the amount of buttons you want to be generated(at least 3) :</label>
+                <input type="text" class="form-control w-25 text-center" id="numberOfButtons" />
+            </div>
+            <button class="btn btn-primary" id="press" type="button">Let's guess!</button>
+        </form>
+
+        <div class="container my-4 justify-content-between" id="buttonsContainer">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+}
