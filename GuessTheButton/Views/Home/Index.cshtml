@@ -14,10 +14,10 @@
     <div class="container my-4">
         <form>
             <div class="input-group d-flex flex-column align-items-center my-2">
-                <label for="numberOfButtons" class="form-label">Enter the amount of buttons you want to be generated(at least 3) :</label>
-                <input type="text" class="form-control w-25 text-center" id="numberOfButtons" />
+                <label for="numberOfButtons" class="form-label">Enter the amount of buttons you want to be generated(at least 2) :</label>
+                <input type="number" class="form-control w-25 text-center" id="numberOfButtons" min="2" />
             </div>
-            <button class="btn btn-primary" id="press" type="button">Let's guess!</button>
+            <button class="btn btn-primary" id="press" type="submit">Let's guess!</button>
         </form>
 
         <div class="container my-4 justify-content-between" id="buttonsContainer">

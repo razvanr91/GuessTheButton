@@ -1,25 +1,62 @@
 ﻿let button = document.getElementById("press");
 let buttonsContainer = document.getElementById("buttonsContainer");
+let numberInput = document.getElementById("numberOfButtons");
 
-button.addEventListener("click", playGame);
+button.addEventListener("click", e => generateButtons(e));
 
-function playGame() {
-    generateButtons()
-}
 
-function generateButtons() {
-    let numberOfButtons = document.getElementById("numberOfButtons").value;
-    let randomGeneratedNumbers = createArrayOfNumbers(numberOfButtons);
+function generateButtons(e) {
+    if (buttonsContainer.childElementCount > 0) {
+        window.location.reload();
+    } else {
 
-    var winningNumber = randomGeneratedNumbers[generateWinningNumber(randomGeneratedNumbers.length - 1)];
+        e.preventDefault();
 
-    for (let i = 0; i < numberOfButtons; i++) {
-        console.log(`${randomGeneratedNumbers[i]} ${winningNumber}`);
-        let generatedButton = createButton();
+        let numberOfButtons = numberInput.value;
 
-        generatedButton.id = `btn-${randomGeneratedNumbers[i]}`;
+        if (numberOfButtons >= 2) {
+            numberInput.disabled = true;
 
-        buttonsContainer.appendChild(generatedButton);
+            if (button.classList.contains("btn-danger")) {
+                button.classList.replace("btn-danger", "btn-success");
+            }
+
+            button.classList.replace("btn-primary", "btn-success");
+
+            button.innerHTML = "Play again";
+
+            let randomGeneratedNumbers = createArrayOfNumbers(numberOfButtons);
+
+            var winningNumber = randomGeneratedNumbers[generateWinningNumber(randomGeneratedNumbers.length - 1)];
+
+            for (let i = 0; i < numberOfButtons; i++) {
+                console.log(`${randomGeneratedNumbers[i]} ${winningNumber}`);
+                let generatedButton = createButton();
+
+                generatedButton.id = `btn-${randomGeneratedNumbers[i]}`;
+
+                buttonsContainer.appendChild(generatedButton);
+            }
+
+            let gameButtons = buttonsContainer.querySelectorAll("button");
+
+            gameButtons.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    let buttonId = btn.id.split('-');
+
+                    if (buttonId[1] == winningNumber) {
+                        btn.classList.replace('btn-secondary', 'btn-success');
+                        btn.innerHTML = `Way to go! You won!`;
+                    } else {
+                        btn.classList.replace('btn-secondary', 'btn-danger');
+                        btn.innerHTML = `Oh sorry... Wrong one.`;
+                    }
+                });
+            });
+        } else {
+            button.classList.replace("btn-primary", "btn-danger");
+            button.innerHTML = "You must create at least 2 buttons...";
+        }
     }
 
 }
